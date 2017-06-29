@@ -1,0 +1,238 @@
+*{
+  font-family: 'Raleway', sans-serif;
+}
+
+body,html{
+  margin: 0 auto;
+  background-color: #051923;
+  text-align: center;
+}
+
+body{
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+a{
+  color: firebrick;
+  font-weight: bold;
+}
+
+.center-container{
+  background-image: url('https://www.fbi.gov/image-repository/cyber-crime.jpg/@@images/image/high');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+
+.landing-container, .user-form{
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, .95);
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  min-height: 200px;
+  box-shadow: 0 0 40px rgba(0,0,0,.5);
+}
+
+.landing-container> h1, .user-form>h1{
+  margin: 0 auto 30px;
+  font-size: 4em;
+}
+
+.landing-container .fake-button{
+  margin: 10px 0;
+}
+
+.fake-button, button{
+  display: inline-block;
+  padding: 7px 10px;
+  background-color: black;
+  color: white;
+  font-size: 1.5em;
+  text-decoration: none;
+  text-align: center;
+}
+
+.fake-button:hover, button:hover{
+  background-color: crimson;
+}
+
+.user-form button{
+  margin: 20px 0;
+}
+
+.user-form label{
+  text-align: left;
+}
+
+input{
+  margin: 5px 0 10px;
+}
+
+input{
+  padding: 7px 10px;
+  font-size: 1em;
+}
+
+.container{
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-color: white;
+  width: 100%;
+  /*max-width: 900px;*/
+  margin: 0 auto;
+  box-shadow: 0 0 40px rgba(0,0,0,.5);
+  min-height: 100vh;
+}
+
+nav{
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  height: 50px;
+  background-color: black;
+}
+
+nav a{
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+
+nav a:hover {
+  background-color: firebrick;
+}
+
+.container img{
+  margin: 0 auto;
+}
+
+form#search{
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+#search-input{
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  margin: 0;
+}
+#search-button{
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-color: black;
+  color: white;
+  font-size: 1em;
+}
+
+.results{
+/*  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;*/
+/*  -webkit-flex-direction: column;
+  -ms-flex-direction: column;*/
+  /*flex-direction: column;*/
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 90%;
+  /*background-color: tomato;*/
+}
+
+.crime-container {
+  /*background-color: tomato;*/
+  /*width: 90vw;*/
+  margin-top: 30px;
+
+}
+
+.single-crime {
+  background-color: #003554;
+/*  padding: 5px;*/
+  color:  white;
+  width: 30%;
+  display: inline-block;
+  margin-bottom: 3px;
+  margin-left: 2.5%;
+  float: left;
+}
+
+.single-crime:hover{
+  background-color: #051923;
+}
+
+.show{
+  max-width: 600px;
+  margin: 0 auto;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 20px;
+}
+.show img{
+  margin: 0 auto;
+  max-width: 200px;
+}
+
+#edit-show{
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: left;
+}
+
+textarea{
+  height: 150px;
+  margin: 5px 0 10px;
+  font-size: 1em;
+  resize: vertical;
+}
