@@ -2,29 +2,37 @@ $(() => {
 
             console.log('jQuery Connected!');
 
+
+            const createFilters = () => {
+              const borough = $('#borough option:selected').text();
+              const offense = $('#offense option:selected').text();
+              const location = $('#location option:selected').text();
+              //const jurisdiction = $('#jurisdiction option:selected').text();
+
+              getCrimes(borough, offense, location);
+
+            }//end createFilters
+
             //when search form is submitted
             $('#search').on('submit', (e) => {
                 e.preventDefault();
                 const crime = $('#search-input').val();
-                console.log("search form was submitted with val: " + crime);
-                getCrimes(crime);
+                //console.log("search form was submitted with val: " + crime);
+                //getCrimes(crime);
+                createFilters();
             })
 
-            const getCrimes = (borough) => {
-
-                    const ky_cd = '104',
-                        boroName = borough,
-                        location = 'INSIDE',
-                        offenseDesc = 'RAPE',
-                        address = '20';
-
+            const getCrimes = (borough, offense, location) => {
                     $.ajax({
-                        url: `https://data.cityofnewyork.us/resource/9s4h-37hy.json?&boro_nm=${boroName}&ofns_desc=${offenseDesc}`,
+                        //url: `https://data.cityofnewyork.us/resource/9s4h-37hy.json?&boro_nm=${borough}&ofns_desc=${offense}&loc_of_occur_desc=${location}&juris_desc=${jurisdiction}`,
+                        url: `https://data.cityofnewyork.us/resource/9s4h-37hy.json?loc_of_occur_desc=${location}&boro_nm=${borough}&ofns_desc=${offense}`,
                         type: 'GET',
-                        success: (crimes) => {
+                        success: (data) => {
                             console.log("Hey from ajax getCrimes");
-                            console.log("crimes are: " + crimes.length);
-                            renderCrimes(crimes);
+                            console.log(data.length);
+
+                            //parseCrimes(data);
+                            renderCrimes(data);
                         },
                         error: (err) => {
                             console.log("ajax error: " + err)
@@ -39,19 +47,25 @@ $(() => {
             // up in your database so you want to keep it consistent.
             // look at the `seed` file to figure out what values you need
             // what if a result doesn't have an image? a network? a summary?
-            const parseShows = (shows) => {
-                const parsedShows = shows.reduce((shows, show) => {
-                    if (show.show) {
-                        shows.push({
-                            name: show.show.name,
-                            image: show.show.image ? show.show.image.medium : 'https://c1.staticflickr.com/9/8411/8706485644_dcc5d37b5b_b.jpg',
-                            network: show.show.network ? show.show.network.name : "N/A",
-                            summary: show.show.summary ? show.show.summary.replace(/<(?:.|\n)*?>/gm, '') : 'N/A'
-                        })
+           
+            const parseCrimes = (crimes) => {
+                console.log(crimes)
+
+                const parsedCrimes = crimes.reduce((crimes, crime) => {
+                    if (crime.crime) { //ir errror, try crime.data
+                        crimes.push({
+                            borough: crime.crime.boro_name,
+                            offense: crime.crime.ofns_desc,
+                            location: crime.crime.loc_of_occur_desc
+                        }) 
+                        console.lo(crimes);
+                        console.log(crime);
+                        console.log(parsedCrimes);
+
                     }
-                    return shows
+                    return crimes
                 }, []);
-                renderShows(parsedShows);
+                renderCrimes(parsedCrimes);
             }
 
             // render your data! Each result should have:
@@ -71,46 +85,42 @@ $(() => {
                         const offenseData = $('<p>').text('Offense: ' + crime.ofns_desc).appendTo(singleCrime);
                         const jurisdiction = $('<p>').text('Jurisdiction: ' + crime.juris_desc).appendTo(singleCrime);
 
+                        const saveButton = $('<button>', {
+                          id: 'save-show'
+                        }).text('Save Crime').appendTo(singleCrime).click( e => {
+
+                          const crimeData = {
+                            offense: crime.ofns_desc,
+                            place_of_occurrance: crime.loc_of_occur_desc,
+                            borough: crime.boro_nm
+                          };
+
+                          createCrime(crimeData);
+
+                          console.log(crimeData);
+
+
+                        })
 
                         singleCrime.appendTo(crimesContainer);
                         crimesContainer.appendTo($results);
                     });
 
-                    /*                    crimes.forEach(show => {
-
-                                            const $show = $('<div>', {
-                                                class: 'show'
-                                            }).appendTo($results);
-
-                                            const $name = $('<h3>').text(show.name).appendTo($show);
-
-                                            const $img = $('<img>', {
-                                                src: show.image,
-                                                class: 'show-image'
-                                            }).appendTo($show);
-
-                                            const $summary = $('<p>').html(show.summary).appendTo($show);
-
-                                            const $save = $('<button>', {
-                                                id: 'save-show'
-                                            }).text('Save Show').appendTo($show).click(e => {
-                                                createShow(show);
-                                            })
-                                        })//end fr each*/
-
-
-
                 }
 
+
                 // this function should preform an ajax call to your post route
-                // to add the show to your database
-                const createShow = (show) => {
+                // to add the crime to your database
+                const createCrime = (crime) => {
                     $.ajax({
-                        url: '/shows/',
+                        url: '/crimes/',
                         type: 'POST',
-                        data: show,
+                        data: crime,
                         success: res => {
-                            window.location.replace(`/shows/${res.show.id}`);
+                            window.location.replace(`/crimes/${res.crime.id}`);
+
+                            console.log("Ajax cretaeCrime: ", res.crime.id)
+                            //window.location.replace(`/shows/${res.crime.id}`);
                         },
                         error: err => {
                             console.log(err);
@@ -118,7 +128,7 @@ $(() => {
                     })
                 }
 
-                $('#edit-show').on('submit', (e) => {
+                /*$('#edit-show').on('submit', (e) => {
                     e.preventDefault();
                     const show = {
                         name: $('#name-input').val(),
@@ -162,7 +172,7 @@ $(() => {
                         }
                     })
                 }
-
+*/
 
 
 

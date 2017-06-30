@@ -2,6 +2,27 @@ const db = require('../db/config');
 
 const axios = require('axios');
 
+// if something does not work
+//!!!!!!Check quotes in finAllByUSer
+// and insertCrime !!!!!!!!!!!!!!!!
+
+
+const findAllByUser = (userId) => {
+	return db.any('SELECT * FROM shows WHERE user_id = $1', [user_id]);
+}//end of findAllByUser
+
+const findSingleCrime = (crimeId, userId) => {
+	return db.oneOrNone('SELECT * FROM crimes WHERE id = $1 AND user_id = $2;',
+		[crimeId, userId]);
+}//end of findSingleCrime
+
+const insertCrime = (crime, userId) => {
+	return db.one(`INSERT INTO crimes
+		(offense, place_of_occurrance, borough, user_id)
+		VALUES ($1, $2, $3, $4) RETURNING *`,
+		[crime.offense, crime.place_of_occurrance, crime.borough, userId]);
+}//end of insertCrime
+
 
 
 function allCrimes() {
@@ -24,7 +45,6 @@ function allCrimes() {
     return queryPromise;
 }
 
-
 function customCrime() {
     const queryPromise = axios({
         url: '',
@@ -33,7 +53,7 @@ function customCrime() {
 }
 
 //dont forget to export funtioncs!!!!
-module.exports = { allCrimes, customCrime }
+module.exports = { findAllByUser, findSingleCrime, insertCrime, allCrimes }
 
 
 /*Name: Crime Data NYC

@@ -7,14 +7,6 @@ const auth = require('../services/auth');
 
 // ----------------------------------------
 // users index
-
-
-
-
-
-
-
-
 router.post(
     '/',
     // we want the behavior of the site to vary depending on whether or
@@ -27,7 +19,7 @@ router.post(
         // 'local-signup' back in index.js.
         'local-signup', {
             failureRedirect: '/user/new',
-            successRedirect: '/crimes'
+            successRedirect: '/crimes/index'
         }
     )
 );
@@ -57,7 +49,7 @@ router.get('/login', (req, res) => {
 router.post('/login', passport.authenticate(
     'local-login', {
         failureRedirect: '/user/login',
-        successRedirect: '/crimes'
+        successRedirect: '/crimes/index'
     }
 ));
 
