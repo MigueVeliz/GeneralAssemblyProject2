@@ -20,7 +20,7 @@ const insertCrime = (crime, userId) => {
 	return db.one(`INSERT INTO crimes
 		(case_number, offense, place_of_occurrance, borough, user_id)
 		VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-		[crime.case_number, crime.offense, crime.location, crime.borough, userId]);
+		[crime.case_number, crime.offense, crime.place_of_occurrance, crime.borough, userId]);
 }//end of insertCrime
 
 const update = ( crime, crimeId, userId ) => {

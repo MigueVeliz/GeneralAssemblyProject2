@@ -75,15 +75,24 @@ $(() => {
         const renderCrimes = (crimes) => {
             const $results = $('.results').empty();
 
+            if(crimes.length >= 1000) {
+              $('h3').text("more than 1000 crimes" );
+            }
+            else { 
+              $('h3').text( crimes.length + " crimes"); 
+            }
+
+            
+
             crimes.forEach(crime => {
-                console.log(crime.boro_nm);
+                console.log(crime.loc_of_occur_desc);
 
                 const crimesContainer = $('<div>', { class: 'crime-container' });
                 const singleCrime = $('<div>', { class: 'single-crime' });
 
                 const complaintNum = $('<p>').text('Case Number #: ' + crime.cmplnt_num).appendTo(singleCrime);
                 const boroData = $('<p>').text('Borough: ' + crime.boro_nm).appendTo(singleCrime);
-                const offenseData = $('<p>').text('Offense: ' + crime.ofns_desc).appendTo(singleCrime);
+               // const offenseData = $('<p>').text('Offense: ' + crime.ofns_desc).appendTo(singleCrime);
                 const location = $('<p>').text('Location: ' + crime.loc_of_occur_desc).appendTo(singleCrime);
                 const jurisdiction = $('<p>').text('Jurisdiction: ' + crime.juris_desc).appendTo(singleCrime);
 
@@ -100,15 +109,13 @@ $(() => {
                     };
 
                     createCrime(crimeData);
-
                     console.log(crimeData);
-
 
                 })
 
                 singleCrime.appendTo(crimesContainer);
                 crimesContainer.appendTo($results);
-            });
+            });///end for each
 
         }
 
