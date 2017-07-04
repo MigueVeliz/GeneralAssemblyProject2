@@ -187,18 +187,38 @@ form#search{
 }
 
 .single-crime {
+  font-size: 12px;
   background-color: #003554;
 /*  padding: 5px;*/
   color:  white;
   width: 30%;
+  min-height: 150px;
   display: inline-block;
   margin-bottom: 3px;
   margin-left: 2.5%;
   float: left;
 }
+.main-crime {
+  /*background-color: red;*/
+  width: 100vw;
+}
+
+.single-crime-edit {
+  font-size: 20px;
+  background-color: #003554;
+  padding: 10px 4px;
+  color:  white;
+  width: 70%;
+  min-height: 400px;
+  margin: 0 auto;
+}
 
 .single-crime:hover{
   background-color: #051923;
+}
+
+.center-crime {
+  margin: 0 auto;
 }
 
 .show{

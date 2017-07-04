@@ -37,12 +37,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
-app.use('/', require('./controllers/crimes'));
+//app.use('/', require('./controllers/crimes'));
 app.use('/user', require('./controllers/users'));
 app.use('/crimes', auth.restrict, require('./controllers/crimes'));
 
-// app.get('/', (req, res) => {
-//     res.render('index');
-// });
+app.get('/', (req, res) => {
+    res.render('index');
+});
 
 app.listen(PORT, () => console.log('Server listening on port', PORT));

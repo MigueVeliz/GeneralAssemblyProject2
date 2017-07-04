@@ -19,7 +19,7 @@ router.post(
         // 'local-signup' back in index.js.
         'local-signup', {
             failureRedirect: '/user/new',
-            successRedirect: '/crimes/index'
+            successRedirect: '/crimes'
         }
     )
 );
@@ -49,7 +49,7 @@ router.get('/login', (req, res) => {
 router.post('/login', passport.authenticate(
     'local-login', {
         failureRedirect: '/user/login',
-        successRedirect: '/crimes/index'
+        successRedirect: '/crimes'
     }
 ));
 

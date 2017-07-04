@@ -10,6 +10,7 @@ CREATE TABLE users (
 CREATE TABLE crimes (
 	id BIGSERIAL PRIMARY KEY,
 	user_id INT REFERENCES users(id),
+	case_number BIGSERIAL NOT NULL,
 	offense VARCHAR NOT NULL,
 	place_of_occurrance VARCHAR NOT NULL,
 	borough VARCHAR NOT NULL

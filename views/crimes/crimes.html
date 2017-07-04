@@ -10,23 +10,28 @@
   <script src="./js/script.js"></script>
 </head>
 <body>
+
   <div class="container">
     <nav>
-      <a href="/shows">Saved Shows</a>
-      <a href="/shows/new">Add A Show</a>
+      <a href="new">Search for a crime: </a>
       <a href="/user/logout">Log Out</a>
     </nav>
-    <div class="show">
-      <h2>{{name}}</h2>
-      <img src="{{image}}" />
-      <h3>Network:</h3>
-      <p>{{network}}</p>
-      <h3>Summary:</h3>
-      <p>{{summary}}</p>
-      <a class="fake-button" href="/shows/{{id}}/edit">Edit</a>
-      <button id="delete-show" data-id="{{id}}">Delete</button>
+    <h1>Crime Look out</h1>
+    <h2>Welcome, {{email}}!</h1>
+    <h2>Your saved crimes:</h2>
+    <div class="show-list">
+      {{#crimes}}
+      <a href="/crimes/{{id}}">
+        <div class="show">
+          <h3>Case Number: {{case_number}}</h3>
+          <h3>Offense: {{offense}}</h3>
+          <h3>Borough: {{borough}}</h3>
+          <h3>location: {{location}}</h3>
+        </div>
+      </a>
+      {{/crimes}}
     </div>
-
   </div>
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+s<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -13,21 +13,23 @@
 
   <div class="container">
     <nav>
-      <a href="/crimes/index">Search for a crime: </a>
+      <a href="/crimes/">Back to Crimes: </a>
+      <a href="/crimes/new">Search for a crime: </a>
       <a href="/user/logout">Log Out</a>
     </nav>
-    <h1>1 crime</h1>
-    <h2>Welcome, {{email}}!</h1>
-    <div class="show-list">
+    <!--  --><h1>1 crime</h1>
+    <div class="main-crime">
         
         <h3>You selected the following crime:</h3>
-        <div class="single-crime">
-          <h3>{{offense}}</h3>
-          <h3>{{borough}}</h3>
-          <h3>{{place_of_occurrance}}</h3>
-
+        <div class="single-crime-edit">
+          <h3>Case Number: {{case_number}}</h3>
+          <h3>Offense: {{offense}}</h3>
+          <h3>Borough: {{borough}}</h3>
+          <h3>Location: {{place_of_occurrance}}</h3>
+          <a class="fake-button" href="/crimes/{{id}}/edit">Edit</a>
+          <button id="delete-crime" data-id="{{id}}">Delete</button>
         </div>
-      </a>
+
     </div>
   </div>
 
